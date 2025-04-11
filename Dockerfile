@@ -4,13 +4,12 @@ ENV PYTHONUNBUFFERED 1
 
 WORKDIR /app
 
-COPY poetry.lock pyproject.toml ./
+COPY uv.lock pyproject.toml ./
 RUN pip install --upgrade pip && \
-    pip install poetry && \
-    poetry config virtualenvs.create false
+    pip install uv
 
 ARG DEV=false
-RUN if [ "$DEV" = "true" ] ; then poetry install --with dev ; else poetry install --only main ; fi
+RUN if [ "$DEV" = "true" ] ; then uv pip install -r uv.lock --extras dev ; else uv pip install -r uv.lock ; fi
 
 COPY ./app/ ./
 COPY ./ml/model/ ./ml/model/
