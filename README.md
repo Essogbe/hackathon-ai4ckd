@@ -10,8 +10,9 @@ Projet de prédiction des stages de la maldie rénale chronique
 ### M.L Model Environment
 
 ```sh
-MODEL_PATH=./ml/model/
-MODEL_NAME=model.pkl
+MODEL_PATH=artefacts/models
+MODEL_NAME=modele_rf.pkl
+ARTEFACT_PATH=artefacts
 ```
 
 ### Update `/predict`
