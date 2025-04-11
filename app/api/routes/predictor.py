@@ -14,13 +14,10 @@ router = APIRouter()
 
 
 def get_prediction(data_point):
-    return model.predict(data_point, load_wrapper=joblib.load, method="predict")
+    return model.predict(data_point, method="predict")
 
 
-def get_prediction_label(prediction):
-    if prediction == 1:
-        return "label ok"
-    return "label nok"
+
 
 
 @router.post(
@@ -32,15 +29,15 @@ async def predict(data_input: MachineLearningDataInput):
     if not data_input:
         raise HTTPException(status_code=404, detail="'data_input' argument invalid!")
     try:
-        data_point = data_input.get_np_array()
+        data_point = data_input.get_df()
         prediction = get_prediction(data_point)
-        prediction_label = get_prediction_label(prediction)
+        prediction_label = str(prediction)
 
     except Exception as err:
         raise HTTPException(status_code=500, detail=f"Exception: {err}")
 
     return MachineLearningResponse(
-        prediction=prediction, prediction_label=prediction_label
+       stade=prediction_label
     )
 
 
@@ -55,7 +52,7 @@ async def health():
         test_input = MachineLearningDataInput(
             **json.loads(open(INPUT_EXAMPLE, "r").read())
         )
-        test_point = test_input.get_np_array()
+        test_point = test_input.get_df()
         get_prediction(test_point)
         is_health = True
         return HealthResponse(status=is_health)

@@ -10,7 +10,7 @@ def preload_model():
     """
     from services.predict import MachineLearningModelHandlerScore
 
-    MachineLearningModelHandlerScore.get_model(joblib.load)
+    MachineLearningModelHandlerScore.get_model()
 
 
 def create_start_app_handler(app: FastAPI) -> Callable:

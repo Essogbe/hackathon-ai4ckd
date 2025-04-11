@@ -15,7 +15,7 @@ MAX_CONNECTIONS_COUNT: int = config("MAX_CONNECTIONS_COUNT", cast=int, default=1
 MIN_CONNECTIONS_COUNT: int = config("MIN_CONNECTIONS_COUNT", cast=int, default=10)
 SECRET_KEY: Secret = config("SECRET_KEY", cast=Secret, default="")
 MEMOIZATION_FLAG: bool = config("MEMOIZATION_FLAG", cast=bool, default=True)
-
+USE_MLFLOW : bool = config("USE_MLFLOW", cast=bool, default=False)
 PROJECT_NAME: str = config("PROJECT_NAME", default="manu")
 
 # logging configuration
@@ -25,8 +25,11 @@ logging.basicConfig(
 )
 logger.configure(handlers=[{"sink": sys.stderr, "level": LOGGING_LEVEL}])
 
-MODEL_PATH = config(
-    "MODEL_PATH", default="/Users/arthur.dasilva/repos/arthurhenrique/n"
+ARTEFACT_PATH = config(
+    "ARTEFACT_PATH", default="artefacts"
 )
-MODEL_NAME = config("MODEL_NAME", default="pregnancy_model_local.joblib")
+MODEL_PATH = config(
+    "MODEL_PATH", default="artefacts/models"
+)
+MODEL_NAME = config("MODEL_NAME", default="modele_rf.pkl")
 INPUT_EXAMPLE = config("INPUT_EXAMPLE", default="./ml/model/examples/example.json")
