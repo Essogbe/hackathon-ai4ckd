@@ -1,36 +1,34 @@
-# Pin the Python base image for all stages and
-# install all shared dependencies.
+# Base stage with shared Python setup
 FROM python:3-slim AS base
 
 RUN apt-get update && rm -rf /var/lib/apt/lists/*
 
-# Tweak Python to run better in Docker
 ENV PYTHONUNBUFFERED=1 \
     PYTHONDONTWRITEBYTECODE=1
 
-# Build stage: dev & build dependencies can be installed here
+# Build stage with uv and dependencies
 FROM base AS build
 
-RUN apt-get update && rm -rf /var/lib/apt/lists/*
-
-# "Install" uv to the build stage
+# Install uv binary directly (no pip)
 COPY --from=ghcr.io/astral-sh/uv:0.4.9 /uv /bin/uv
 
-# UV_COMPILE_BYTECODE=1 is an important startup time optimization
-ENV UV_COMPILE_BYTECODE=1 UV_LINK_MODE=copy
+ENV UV_COMPILE_BYTECODE=1 \
+    UV_LINK_MODE=copy
 
 WORKDIR /app
 
 COPY uv.lock pyproject.toml ./
-RUN --mount=type=cache,target=/root/.cache/uv \
-  uv sync --frozen --no-install-project --no-dev
 
+# Sync dependencies (no --mount)
+RUN uv sync --frozen --no-install-project --no-dev
+
+# Add source code and re-sync (in case extras are in it)
 COPY . .
-RUN --mount=type=cache,target=/root/.cache/uv \
-  uv sync --frozen --no-dev
+RUN uv sync --frozen --no-dev
 
-# Runtime stage: copy only the virtual environment.
+# Runtime image: minimal with only needed files and venv
 FROM base AS runtime
+
 WORKDIR /app
 
 RUN addgroup --gid 1001 --system nonroot && \
@@ -42,8 +40,7 @@ USER nonroot:nonroot
 ENV VIRTUAL_ENV=/app/.venv \
     PATH="/app/.venv/bin:$PATH"
 
-COPY --from=build --chown=nonroot:nonroot /app ./
-
+COPY --from=build --chown=nonroot:nonroot /app /app
 
 EXPOSE 8080
-CMD uvicorn main:app --host 0.0.0.0 --port 8080
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8080"]
