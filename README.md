@@ -1,6 +1,11 @@
 # AI4CKD-API
 
 Projet de prédiction des stages de la maldie rénale chronique 
+## Features Importance
+![Features Importance](feature.png)
+
+## Model Explanation
+![Model Explanation](shap.png)
 
 ## Development Requirements
 
