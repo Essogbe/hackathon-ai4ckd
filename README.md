@@ -21,18 +21,25 @@ To update your machine learning model, add your `load` and `method` [change here
 ## Installation
 
 ```sh
+pip install uv --break-system-packages
 python -m venv venv
 source venv/bin/activate
 make install
+
 ```
+
+### NB : Install Make on Windows
+Install Chocolatey from here https://chocolatey.org/install
+
+Then run ```choco install make```  from a fresh terminal.
+
+Now run make from another new terminal.
 
 ## Runnning Localhost
 
+
 `make run`
 
-## Deploy app
-
-`make deploy`
 
 ## Running Tests
 
@@ -84,49 +91,9 @@ Application parts are:
     │       ├── predict_model.py
     │       └── train_model.py
     │
+    |────artefacts   - .pkl files for models, scalers ..
+    |
     └── tests            - pytest
 
-## GCP
 
-Deploying inference service to Cloud Run
 
-### Authenticate
-
-1. Install `gcloud` cli
-2. `gcloud auth login`
-3. `gcloud config set project <PROJECT_ID>`
-
-### Enable APIs
-
-1. Cloud Run API
-2. Cloud Build API
-3. IAM API
-
-### Deploy to Cloud Run
-
-1. Run `gcp-deploy.sh`
-
-### Clean up
-
-1. Delete Cloud Run
-2. Delete Docker image in GCR
-
-## AWS
-
-Deploying inference service to AWS Lambda
-
-### Authenticate
-
-1. Install `awscli` and `sam-cli`
-2. `aws configure`
-
-### Deploy to Lambda
-
-1. Run `sam build`
-2. Run `sam deploy --guiChange this portion for other types of models
-
-## Add the correct type hinting when completed
-
-`aws cloudformation delete-stack --stack-name <STACK_NAME_ON_CREATION>`
-
-Made by <https://github.com/arthurhenrique/cookiecutter-fastapi/graphs/contributors> with ❤️
