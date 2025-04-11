@@ -1,6 +1,6 @@
-# AI4CKD
+# AI4CKD-API
 
-A short description of the project
+Projet de prédiction des stages de la maldie rénale chronique 
 
 ## Development Requirements
 
@@ -35,7 +35,7 @@ Then run ```choco install make```  from a fresh terminal.
 
 Now run make from another new terminal.
 
-## Runnning Localhost
+## Runnning API Localhost
 
 
 `make run`
