@@ -29,7 +29,7 @@ test: venv
 
 install: generate_dot_env venv
 	pip install uv --break-system-packages
-        uv add pytest
+	uv add pytest
 	uv pip install -e ".[dev]"
 
 run: venv
