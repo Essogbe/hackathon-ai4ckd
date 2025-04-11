@@ -6,6 +6,8 @@ description = "A short description of the project"
 authors = [
     { name = "Your name", email = "you@example.com" },
 ]
+
+
 dependencies = [
     "fastapi>=0.103.0",
     "uvicorn==0.23.2",
