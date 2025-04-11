@@ -20,6 +20,13 @@ To update your machine learning model, add your `load` and `method` [change here
 
 ## Installation
 
+### NB : Install Make on Windows
+Install Chocolatey from here https://chocolatey.org/install
+
+Then run ```choco install make```  from a fresh terminal.
+
+Now run make from another new terminal.
+
 ```sh
 pip install uv --break-system-packages
 python -m venv venv
@@ -28,12 +35,7 @@ make install
 
 ```
 
-### NB : Install Make on Windows
-Install Chocolatey from here https://chocolatey.org/install
 
-Then run ```choco install make```  from a fresh terminal.
-
-Now run make from another new terminal.
 
 ## Runnning API Localhost
 
