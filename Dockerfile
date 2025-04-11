@@ -1,18 +1,22 @@
-FROM python:3.11.0-slim
+# Install uv
+FROM python:3.12-slim
+COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
 
-ENV PYTHONUNBUFFERED 1
-
+# Change the working directory to the `app` directory
 WORKDIR /app
 
-COPY uv.lock pyproject.toml ./
-RUN pip install --upgrade pip && \
-    pip install uv
+# Install dependencies
+RUN --mount=type=cache,target=/root/.cache/uv \
+    --mount=type=bind,source=uv.lock,target=uv.lock \
+    --mount=type=bind,source=pyproject.toml,target=pyproject.toml \
+    uv sync --frozen --no-install-project
 
-ARG DEV=false
-RUN if [ "$DEV" = "true" ] ; then uv pip install -r uv.lock --extras dev ; else uv pip install -r uv.lock ; fi
+# Copy the project into the image
+ADD . /app
 
-COPY ./app/ ./
-COPY ./ml/model/ ./ml/model/
+# Sync the project
+RUN --mount=type=cache,target=/root/.cache/uv \
+    uv sync --frozen
 
 ENV PYTHONPATH "${PYTHONPATH}:/app"
 
