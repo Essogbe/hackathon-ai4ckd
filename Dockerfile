@@ -23,7 +23,8 @@ COPY uv.lock pyproject.toml ./
 RUN uv sync --frozen --no-install-project --no-dev
 
 # Add source code and re-sync (in case extras are in it)
-COPY . .
+COPY ./app/ ./
+copy artefacts .
 
 
 # Runtime image: minimal with only needed files and venv
