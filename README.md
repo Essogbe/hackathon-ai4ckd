@@ -1,6 +1,8 @@
 # AI4CKD-API
 
 Projet de prédiction des stages de la maldie rénale chronique 
+
+Lien vers l'API déployé sur Google Cloud Run : https://ai4ckd-844747804346.us-central1.run.app/docs
 ## Features Importance
 ![Features Importance](feature.png)
 
