@@ -24,7 +24,7 @@ RUN uv sync --frozen --no-install-project --no-dev
 
 # Add source code and re-sync (in case extras are in it)
 COPY ./app/ ./
-copy artefacts .
+COPY artefacts .
 
 
 # Runtime image: minimal with only needed files and venv
