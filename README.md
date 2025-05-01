@@ -44,23 +44,24 @@ make install
 
 
 
-## Runnning API Localhost
+### Runnning API Localhost
 
 
 `make run`
 
 
-## Running Tests
+### Running Tests
 
 `make test`
 
-## Access Swagger Documentation
+### Access Swagger Documentation
 
 > <http://localhost:8080/docs>
 
-## Access Redocs Documentation
+### Access Redocs Documentation
 
 > <http://localhost:8080/redoc>
+
 
 ## Future Improvements
 
