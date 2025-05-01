@@ -67,11 +67,11 @@ make install
 
 To further enhance the robustness and scalability of this solution, several improvements are envisioned:
 
--  Monitoring Data & Model Drift during Inference: Implement continuous monitoring to detect distribution shifts in input data or degradation in model performance. In the event of significant drift, the system could trigger an automated retraining pipeline to ensure the model remains accurate and clinically relevant over time.
+-  **Monitoring Data & Model Drift during Inference**: Implement continuous monitoring to detect distribution shifts in input data or degradation in model performance. In the event of significant drift, the system could trigger an automated retraining pipeline to ensure the model remains accurate and clinically relevant over time.
 
-- Prototyping Federated Learning: Explore decentralized training strategies that enable collaborative learning from clinical data across multiple hospitals or labs, without exposing sensitive patient information.
+- **Prototyping Federated Learning**: Explore decentralized training strategies that enable collaborative learning from clinical data across multiple hospitals or labs, without exposing sensitive patient information.
 
-- Better End-to-End Automation: Design a fully automated and reproducible machine learning workflow, covering data validation, model versioning, retraining triggers, and production deployment with minimal manual intervention.
+- **Better End-to-End Automation**: Design a fully automated and reproducible machine learning workflow, covering data validation, model versioning, retraining triggers, and production deployment with minimal manual intervention.
 
 ## Project structure
 
