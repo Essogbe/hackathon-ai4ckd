@@ -1,8 +1,7 @@
 # AI4CKD-API
+This project was developed as part of the AI4CKD hackathon, aiming to leverage artificial intelligence for the prediction of chronic kidney disease (CKD) stages. Using real clinical data from patients at CNHU-HKM, we built machine learning models capable of identifying CKD progression from biological and risk factor profiles. The solution integrates robust preprocessing, feature selection (RFE), hyperparameter optimization, and interpretable classification models to assist healthcare professionals in early diagnosis and personalized monitoring. Through this initiative, we contribute to predictive and proactive nephrology, with the long-term goal of improving patient care and reducing complications.
 
-Projet de prédiction des stages de la maldie rénale chronique 
-
-Lien vers l'API déployé sur Google Cloud Run : https://ai4ckd-844747804346.us-central1.run.app/docs
+ Google Cloud Run : https://ai4ckd-844747804346.us-central1.run.app/docs
 ## Features Importance
 ![Features Importance](feature.png)
 
